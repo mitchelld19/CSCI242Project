@@ -18,7 +18,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new NewsBundle\NewsBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
+            //new FOS\UserBundle\FOSUserBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             
         );
