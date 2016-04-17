@@ -14,11 +14,12 @@
             </tr>
         </thead>
         <tbody>
-        {% for article in articles %}
+        {% for article in articles|slice(0,3) %}
+            
             <tr>
                 <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
                 <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
+                <td>{{ article.content|length > 50 ? article.content|slice(0, 50) ~ '...' : article.content  }}</td>
                 <td>{{ article.category }}</td>
                 <td>
                     <ul>
@@ -31,6 +32,7 @@
                     </ul>
                 </td>
             </tr>
+            
         {% endfor %}
         </tbody>
     </table>
