@@ -65,7 +65,8 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
-    
+ 
+# Vich Uploader Bundle   
 vich_uploader:
     db_driver: orm
 
@@ -73,3 +74,9 @@ vich_uploader:
         article_image:
             uri_prefix:         /images/articles
             upload_destination: %kernel.root_dir%/../web/bundles/framework/images/articles
+            
+# FOS User Bundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: NewsBundle\Entity\User
