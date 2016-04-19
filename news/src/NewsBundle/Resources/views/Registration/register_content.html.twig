@@ -1,0 +1,12 @@
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <label>Email</label> {{ form_widget(form.email) }}
+    <label>Username</label> {{ form_widget(form.username) }}
+    <label>Password</label> {{ form_widget(form.plainPassword.first) }}
+    <label>Password Again</label> {{ form_widget(form.plainPassword.second) }}
+    
+
+    <div>
+        <input type="submit" value="Create Account" />
+    </div>
+{{ form_end(form) }}
