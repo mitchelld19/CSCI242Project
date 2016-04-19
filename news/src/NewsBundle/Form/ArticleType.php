@@ -18,6 +18,7 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('content')
             ->add('category')
+            ->add('imageFile', 'file')
         ;
     }
     
