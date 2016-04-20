@@ -1,4 +1,6 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block body %}
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
     <label>Email</label> {{ form_widget(form.email) }}
     <label>Username</label> {{ form_widget(form.username) }}
@@ -10,3 +12,4 @@
         <input type="submit" value="Create Account" />
     </div>
 {{ form_end(form) }}
+{% endblock %]

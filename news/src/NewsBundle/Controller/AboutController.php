@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class AboutController extends Controller
 {
     /**
-     * @Route("/about")
+     * @Route("/about",  name="about")
      */
     public function aboutAction()
     {
