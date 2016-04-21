@@ -63,7 +63,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="category", type="string", length=20)
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
      */
     private $category;
 
@@ -155,7 +155,7 @@ class Article
     {
         $this->imageFile = $image;
         
-        dump($image);
+    
 
         if ($image) {
             // It is required that at least one field changes if you are using doctrine

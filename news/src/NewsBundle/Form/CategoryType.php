@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ArticleType extends AbstractType
+class CategoryType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,14 +15,7 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
             ->add('category')
-            ->add('imageFile', 'vich_file', array(
-                    'required'      => true,
-                    'allow_delete'  => false, // not mandatory, default is true
-                    'download_link' => true, // not mandatory, default is true
-                ))
         ;
     }
     
@@ -32,7 +25,7 @@ class ArticleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'NewsBundle\Entity\Article'
+            'data_class' => 'NewsBundle\Entity\Category'
         ));
     }
 }
