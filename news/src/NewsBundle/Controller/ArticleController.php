@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use NewsBundle\Entity\Article;
 use NewsBundle\Form\ArticleType;
 
@@ -37,8 +38,9 @@ class ArticleController extends Controller
     /**
      * Creates a new Article entity.
      *
-     * @Route("/admin/new", name="article_new")
+     * @Route("/new", name="article_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function newAction(Request $request)
     {
@@ -53,11 +55,12 @@ class ArticleController extends Controller
 
             return $this->redirectToRoute('article_show', array('id' => $article->getId()));
         }
-
+        
         return $this->render('article/new.html.twig', array(
             'article' => $article,
             'form' => $form->createView(),
         ));
+        
     }
 
     /**
@@ -65,6 +68,7 @@ class ArticleController extends Controller
      *
      * @Route("/{id}", name="article_show")
      * @Method("GET")
+     * @Security("has_role('ROLE_ADMIN') or has_role('ROLE_USER')")
      */
     public function showAction(Article $article)
     {
@@ -81,6 +85,7 @@ class ArticleController extends Controller
      *
      * @Route("/{id}/edit", name="article_edit")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, Article $article)
     {
@@ -95,12 +100,13 @@ class ArticleController extends Controller
 
             return $this->redirectToRoute('article_edit', array('id' => $article->getId()));
         }
-
+        
         return $this->render('article/edit.html.twig', array(
             'article' => $article,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
+        
     }
 
     /**
@@ -108,6 +114,7 @@ class ArticleController extends Controller
      *
      * @Route("/{id}", name="article_delete")
      * @Method("DELETE")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Article $article)
     {
