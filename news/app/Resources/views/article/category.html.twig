@@ -1,19 +1,7 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block body %}
-    <h1>Article list</h1>
-
-    <ul>
-    {% for category in categories %}
-    
-        <li>
-            <a href="{{ path('article_category', { 'category': category.id }) }}">{{ category }}</a>
-        </li>
-    
-    {% endfor %}
-    </ul>
-    
-    <table>
+        <table>
         <thead>
             <tr>
                 <th>Id</th>
@@ -24,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for article in articles|slice(0,3) %}
+        {% for article in articles %}
             
             <tr>
                 <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
@@ -48,10 +36,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('article_new') }}">Create a new entry</a>
-        </li>
-    </ul>
-{% endblock %}
+    
+        
+    {% endfor %}
+{% endblock body %}

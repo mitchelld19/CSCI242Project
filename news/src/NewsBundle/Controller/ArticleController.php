@@ -27,16 +27,17 @@ class ArticleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $articles = $em->getRepository('NewsBundle:Article')->findAll();
+        $categories = $em->getRepository('NewsBundle:Category')->findAll();
 
         return $this->render('article/index.html.twig', array(
-            'articles' => $articles,
+            'articles' => $articles, 'categories' => $categories,
         ));
     }
-
+   
     /**
      * Creates a new Article entity.
      *
-     * @Route("/new", name="article_new")
+     * @Route("/admin/new", name="article_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -137,4 +138,5 @@ class ArticleController extends Controller
             ->getForm()
         ;
     }
+    
 }

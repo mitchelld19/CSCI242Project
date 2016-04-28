@@ -79,6 +79,8 @@ class Category
     
     /**
      * Get article
+     * 
+     * @return arrayCollection
      */
     public function getArticle()
     {
@@ -87,6 +89,8 @@ class Category
     
     /**
      * Set article
+     * 
+     * @return Article
      */
      public function setArticle($article)
      {

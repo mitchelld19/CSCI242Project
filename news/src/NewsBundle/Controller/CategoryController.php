@@ -137,4 +137,21 @@ class CategoryController extends Controller
             ->getForm()
         ;
     }
+    /**
+     * Lists all Article within a category.
+     *
+     * @Route("/{category}", name="article_category")
+     * @Method("GET")
+     */
+    public function articleCategoryAction(Category $category)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $articles = $em->getRepository('NewsBundle:Category')->findByCategory($category);
+        
+        return $this->render('category/show.html.twig', array(
+            'articles' => $articles,
+        )); 
+       
+    }
 }

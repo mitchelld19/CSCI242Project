@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block body %}
     <h1>Category</h1>
@@ -29,4 +29,35 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for article in category.article %}
+        <tr>
+                <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
+                <td>{{ article.title }}</td>
+                <td>{{ article.content|length > 50 ? article.content|slice(0, 50) ~ '...' : article.content  }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('article_show', { 'id': article.id }) }}">show</a>
+                        </li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('article_edit', { 'id': article.id }) }}">edit</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </td>
+            </tr>
+    {% endfor %}
+     </tbody>
+    </table>
 {% endblock %}

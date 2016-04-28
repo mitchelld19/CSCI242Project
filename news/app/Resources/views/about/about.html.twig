@@ -3,7 +3,8 @@
 {% block body %}
     <h1>About Page</h1>
     
-    <textarea class="tinymce">Some important shit</textarea>
-    {{ tinymce_init() }}
-    
+    {% if is_granted('ROLE_ADMIN') %}
+        <textarea class="tinymce"></textarea>
+        {{ tinymce_init() }}
+    {% endif %}
 {% endblock %}
