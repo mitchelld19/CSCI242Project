@@ -19,7 +19,7 @@ class ArticleType extends AbstractType
             ->add('content')
             ->add('category')
             ->add('imageFile', 'vich_file', array(
-                    'required'      => true,
+                    'required'      => false,
                     'allow_delete'  => false, // not mandatory, default is true
                     'download_link' => true, // not mandatory, default is true
                 ))
