@@ -73,9 +73,16 @@ class ArticleController extends Controller
     public function showAction(Article $article)
     {
         $deleteForm = $this->createDeleteForm($article);
+        
+        $em = $this->getDoctrine()->getManager();
+        
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
+
+        $user = $em->getRepository('NewsBundle:User')->findBy($currentUser);
 
         return $this->render('article/show.html.twig', array(
             'article' => $article,
+            'user' => $user,
             'delete_form' => $deleteForm->createView(),
         ));
     }
