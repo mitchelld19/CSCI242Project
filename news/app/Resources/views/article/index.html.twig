@@ -1,9 +1,10 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block body %}
-    <h1>Article list</h1>
+    <h1>A & B News</h1>
 
     <ul>
+    <h2>Categories</h2>
     {% for category in categories %}
     
         <li>
@@ -16,7 +17,6 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Content</th>
                 <th>Category</th>
@@ -27,9 +27,8 @@
         {% for article in articles|slice(0,3) %}
             
             <tr>
-                <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.id }}</a></td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content|length > 50 ? article.content|slice(0, 50) ~ '...' : article.content  }}</td>
+                <td><a href="{{ path('article_show', { 'id': article.id }) }}">{{ article.title }}</a></td>
+                <td>{{ article.content|length > 500 ? article.content|slice(0, 500) ~ '...' : article.content  }}</td>
                 <td>{{ article.category }}</td>
                 <td>
                     <ul>
@@ -50,8 +49,10 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('article_new') }}">Create a new entry</a>
-        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('article_new') }}">Create a new entry</a>
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}
